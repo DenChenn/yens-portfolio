@@ -1,9 +1,7 @@
 import * as THREE from 'three';
 
-function buildSun() {
-  //need to learn this function
-  //pass this renderer by param
-  const pmremGenerator = new THREE.PMREMGenerator(renderer);
+export function BuildSun(scene, renderer, sky) {
+  const pmremGenerator = new THREE.PMREMGenerator( renderer );
   const sun = new THREE.Vector3();
 
   const theta = Math.PI * (0.49 - 0.5);
@@ -14,7 +12,7 @@ function buildSun() {
   sun.z = Math.sin(phi) * Math.cos(theta);
 
   sky.material.uniforms['sunPosition'].value.copy(sun);
-  //add from outside
-  //scene.environment = pmremGenerator.fromScene(sky).texture;
+
+  scene.environment = pmremGenerator.fromScene(sky).texture;
   return sun;
 }
