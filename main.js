@@ -77,6 +77,12 @@ loader.load('./japanese_style_bridge/scene.gltf', function(gltf){
   scene.add(mesh) 
 })
 
+loader.load('./tiny_boat/scene.gltf', function(gltf){
+  const mesh = gltf.scene;
+  mesh.position.set(50, 0, 0);
+  scene.add(mesh)
+})
+
 function animate() {
   requestAnimationFrame(animate);
   torus.rotation.x += 0.01;
