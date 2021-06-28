@@ -13,13 +13,12 @@ export function BuildWater(scene) {
       }),
       alpha: 1.0,
       sunDirection: new THREE.Vector3(),
-      sunColor: 0xffffff,
+      sunColor: 0x961126,
       waterColor: 0x001e0f,
       distortionScale: 3.7,
       fog: scene.fog !== undefined
     }
   );
   water.rotation.x = -Math.PI / 2;
-  console.log("inin")
   return water;
 }

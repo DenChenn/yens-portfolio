@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { BuildWater } from './water'
 import { BuildSky } from './sky';
 import { BuildSun } from './sun';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const scene = new THREE.Scene();
 
@@ -34,7 +35,7 @@ camera.position.setZ(30);
 renderer.render(scene, camera);
 
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({color: 0xFF6347});
+const material = new THREE.MeshStandardMaterial({color: 0x6b0000});
 
 const torus = new THREE.Mesh(geometry, material);
 
@@ -56,6 +57,25 @@ const sky = BuildSky();
 scene.add(water)
 scene.add(sky)
 BuildSun(scene, renderer, sky);
+
+let loader = new GLTFLoader();
+loader.load('./japanese_gates_torii_low_poly/scene.gltf', function(gltf){
+  const mesh = gltf.scene;
+  mesh.position.set(50, 0, 50);
+  scene.add(mesh)
+})
+
+loader.load('./japanese_standing_lantern/scene.gltf', function(gltf){
+  const mesh = gltf.scene;
+  mesh.position.set(25, 0, 25);
+  scene.add(mesh)
+})
+
+loader.load('./japanese_style_bridge/scene.gltf', function(gltf){
+  const mesh = gltf.scene;
+  mesh.position.set(-25, 0, -25);
+  scene.add(mesh) 
+})
 
 function animate() {
   requestAnimationFrame(animate);
