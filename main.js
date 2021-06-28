@@ -1,8 +1,9 @@
 import './style.css';
 import * as THREE from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
-
-import {Water} from 'three/examples/jsm/objects/Water.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { BuildWater } from './water'
+import { BuildSky } from './sky';
+import { BuildSun } from './sun';
 
 const scene = new THREE.Scene();
 
@@ -12,24 +13,15 @@ function buildCamera() {
   return camera;
 }
 
-
-
-
-
-
-
 //resizing window
 function onWindowResize() {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize( window.innerWidth, window.innerHeight );
-    }
-    window.addEventListener('resize', onWindowResize);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+}
+window.addEventListener('resize', onWindowResize);
 
-
-
-
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = buildCamera()
 
 const renderer = new THREE.WebGL1Renderer({
   canvas: document.querySelector('#bg')
@@ -54,18 +46,23 @@ const ambienLight = new THREE.AmbientLight(0xfffff);
 scene.add(pointLight, ambienLight);
 
 const lightHelper = new THREE.PointLightHelper(pointLight)
-const gridHelper = new THREE.GridHelper(200, 50);
-
-scene.add(lightHelper, gridHelper);
+scene.add(lightHelper);
 
 const controls = new OrbitControls(camera, renderer.domElement);
+
+const water = BuildWater(scene);
+const sky = BuildSky();
+
+scene.add(water)
+scene.add(sky)
+BuildSun(scene, renderer, sky);
 
 function animate() {
   requestAnimationFrame(animate);
   torus.rotation.x += 0.01;
   torus.rotation.y += 0.005;
   torus.rotation.z += 0.01;
-
+  water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
   renderer.render(scene, camera);
 }
 
