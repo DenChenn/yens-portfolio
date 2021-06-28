@@ -1,10 +1,16 @@
 import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { BuildWater } from './water'
-import { BuildSky } from './sky';
-import { BuildSun } from './sun';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { BuildWater } from './objects/water'
+import { BuildSky } from './objects/sky';
+import { BuildSun } from './objects/sun';
+import { BuildBoat } from './objects/boat';
+import { BuildBridge } from './objects/bridge';
+import { BuildGate } from './objects/gate';
+import { BuildLantern } from './objects/lantern';
+
+
 
 const scene = new THREE.Scene();
 
@@ -22,7 +28,7 @@ function onWindowResize() {
 }
 window.addEventListener('resize', onWindowResize);
 
-const camera = buildCamera()
+const camera = buildCamera();
 
 const renderer = new THREE.WebGL1Renderer({
   canvas: document.querySelector('#bg')
@@ -58,30 +64,10 @@ scene.add(water)
 scene.add(sky)
 BuildSun(scene, renderer, sky);
 
-let loader = new GLTFLoader();
-loader.load('./japanese_gates_torii_low_poly/scene.gltf', function(gltf){
-  const mesh = gltf.scene;
-  mesh.position.set(50, 0, 50);
-  scene.add(mesh)
-})
-
-loader.load('./japanese_standing_lantern/scene.gltf', function(gltf){
-  const mesh = gltf.scene;
-  mesh.position.set(25, 0, 25);
-  scene.add(mesh)
-})
-
-loader.load('./japanese_style_bridge/scene.gltf', function(gltf){
-  const mesh = gltf.scene;
-  mesh.position.set(-25, 0, -25);
-  scene.add(mesh) 
-})
-
-loader.load('./tiny_boat/scene.gltf', function(gltf){
-  const mesh = gltf.scene;
-  mesh.position.set(50, 0, 0);
-  scene.add(mesh)
-})
+BuildBridge(scene, 20, 20, 0);
+BuildBoat(scene, 50, 20, -2);
+BuildGate(scene, 20, 50, 0);
+BuildLantern(scene, 20, -50, 0);
 
 function animate() {
   requestAnimationFrame(animate);
