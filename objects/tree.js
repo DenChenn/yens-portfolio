@@ -3,21 +3,21 @@ import * as THREE from 'three'
 import CANNON from 'cannon'
 
 const size = {
-  x: 10,
-  y: 5,
+  x: 5,
+  y: 10,
   z: 5,
 }
 
-class Bridge {
+class Tree {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
   testMesh = new THREE.Mesh()
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('../models/japanese_bridge/scene.gltf', (gltf) => {
+    loader.load('../models/tree/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
-      this.mesh.scale.set(2, 2, 2)
+      this.mesh.scale.set(0.01, 0.01, 0.01)
       scene.add(this.mesh)
     })
 
@@ -63,4 +63,4 @@ class Bridge {
   }
 }
 
-export default Bridge
+export default Tree

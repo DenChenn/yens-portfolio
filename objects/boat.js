@@ -3,6 +3,12 @@ import * as THREE from 'three'
 import { MAX_VELOCITY, ACCELERATION } from './config'
 import CANNON from 'cannon'
 
+const size = {
+  x: 12,
+  y: 5,
+  z: 6,
+}
+
 class VelocityModel {
   v = 0
   a = 0
@@ -56,8 +62,9 @@ class Boat {
   back = new VelocityModel('s')
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
+  testMesh = new THREE.Mesh()
 
-  constructor(scene, world, posX, posY, posZ) {
+  constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
     loader.load('../models/tiny_boat/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
@@ -65,39 +72,40 @@ class Boat {
       scene.add(this.mesh)
     })
 
-    let sphereShape = new CANNON.Box(new CANNON.Vec3(24, 10, 12))
-    let sphereCM = new CANNON.Material()
+    let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
+    let boxMat = new CANNON.Material()
     this.boxBody = new CANNON.Body({
       mass: 5,
-      shape: sphereShape,
-      position: new CANNON.Vec3(0, 10, 0),
-      material: sphereCM,
+      shape: boxShape,
+      position: new CANNON.Vec3(posX, posY, posZ),
+      material: boxMat,
     })
     world.add(this.boxBody)
 
-    //ground
-    let groundShape = new CANNON.Plane()
-    let groundCM = new CANNON.Material()
-    let groundBody = new CANNON.Body({
-      mass: 0,
-      shape: groundShape,
-      material: groundCM,
-      position: new CANNON.Vec3(0, -12.5, 0),
-    })
-    //rotate the whole plane
-    groundBody.quaternion.setFromAxisAngle(
-      new CANNON.Vec3(1, 0, 0),
-      -Math.PI / 2,
-    )
-    world.add(groundBody)
-
     //contact between floor and boat
-    let sphereGroundContact
-    sphereGroundContact = new CANNON.ContactMaterial(groundCM, sphereCM, {
+    let boxGroundContact
+    boxGroundContact = new CANNON.ContactMaterial(groundMat, boxMat, {
       friction: 0.5,
       restitution: 0.7,
     })
-    world.addContactMaterial(sphereGroundContact)
+    world.addContactMaterial(boxGroundContact)
+
+    let boxG = new THREE.BoxGeometry(
+      2 * size.x,
+      2 * size.y,
+      2 * size.z,
+      2,
+      1,
+      2,
+    )
+    let boxM = new THREE.MeshStandardMaterial({
+      color: 0x33aaaa,
+      wireframe: true,
+    })
+
+    this.testMesh = new THREE.Mesh(boxG, boxM)
+    this.testMesh.position.set(posX, posY, posZ)
+    scene.add(this.testMesh)
   }
 
   update() {
@@ -117,6 +125,8 @@ class Boat {
 
     this.mesh.position.copy(this.boxBody.position)
     this.mesh.quaternion.copy(this.boxBody.quaternion)
+    this.testMesh.position.copy(this.boxBody.position)
+    this.testMesh.quaternion.copy(this.boxBody.quaternion)
   }
 }
 
