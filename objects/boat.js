@@ -55,8 +55,7 @@ class Boat {
   front = new VelocityModel('w')
   back = new VelocityModel('s')
   mesh = new THREE.Mesh()
-
-  sphereBody = new CANNON.Body()
+  boxBody = new CANNON.Body()
 
   constructor(scene, world, posX, posY, posZ) {
     const loader = new GLTFLoader()
@@ -66,15 +65,15 @@ class Boat {
       scene.add(this.mesh)
     })
 
-    let sphereShape = new CANNON.Sphere(1)
+    let sphereShape = new CANNON.Box(new CANNON.Vec3(24, 10, 12))
     let sphereCM = new CANNON.Material()
-    this.sphereBody = new CANNON.Body({
+    this.boxBody = new CANNON.Body({
       mass: 5,
       shape: sphereShape,
       position: new CANNON.Vec3(0, 10, 0),
       material: sphereCM,
     })
-    world.add(this.sphereBody)
+    world.add(this.boxBody)
 
     //ground
     let groundShape = new CANNON.Plane()
@@ -83,14 +82,16 @@ class Boat {
       mass: 0,
       shape: groundShape,
       material: groundCM,
-      position: new CANNON.Vec3(0, -2, 0),
+      position: new CANNON.Vec3(0, -12.5, 0),
     })
+    //rotate the whole plane
     groundBody.quaternion.setFromAxisAngle(
       new CANNON.Vec3(1, 0, 0),
       -Math.PI / 2,
     )
     world.add(groundBody)
 
+    //contact between floor and boat
     let sphereGroundContact
     sphereGroundContact = new CANNON.ContactMaterial(groundCM, sphereCM, {
       friction: 0.5,
@@ -103,19 +104,19 @@ class Boat {
     this.front.accelerate()
     this.back.accelerate()
 
-    this.sphereBody.position.x -= this.front.v * Math.cos(this.front.theta)
-    this.sphereBody.position.z -= this.front.v * Math.sin(this.front.theta)
-    this.sphereBody.position.x += this.back.v * Math.cos(this.front.theta)
-    this.sphereBody.position.z += this.back.v * Math.sin(this.front.theta)
+    this.boxBody.position.x -= this.front.v * Math.cos(this.front.theta)
+    this.boxBody.position.z -= this.front.v * Math.sin(this.front.theta)
+    this.boxBody.position.x += this.back.v * Math.cos(this.front.theta)
+    this.boxBody.position.z += this.back.v * Math.sin(this.front.theta)
 
     this.mesh.rotation.y = -this.front.theta
-    this.sphereBody.quaternion.setFromAxisAngle(
+    this.boxBody.quaternion.setFromAxisAngle(
       new CANNON.Vec3(0, 1, 0),
       this.mesh.rotation.y,
     )
 
-    this.mesh.position.copy(this.sphereBody.position)
-    this.mesh.quaternion.copy(this.sphereBody.quaternion)
+    this.mesh.position.copy(this.boxBody.position)
+    this.mesh.quaternion.copy(this.boxBody.quaternion)
   }
 }
 
