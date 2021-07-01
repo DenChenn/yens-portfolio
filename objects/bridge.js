@@ -1,13 +1,19 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { SkeletonUtils } from 'three/examples/jsm/utils/SkeletonUtils'
+import * as THREE from 'three'
 
-var bridgeMesh
+class Bridge {
+  object = new THREE.Object3D()
 
-export function BuildBridge(scene, posX, posY, posZ) {
-  const loader = new GLTFLoader()
-  loader.load('../models/japanese_bridge/scene.gltf', function (gltf) {
-    bridgeMesh = gltf.scene
-    bridgeMesh.position.set(posX, posZ, posY)
-    bridgeMesh.scale.set(2, 2, 2)
-    scene.add(bridgeMesh)
-  })
+  constructor(scene, posX, posY, posZ) {
+    const loader = new GLTFLoader()
+    loader.load('../models/japanese_bridge/scene.gltf', (gltf) => {
+      this.object.add(SkeletonUtils.clone(gltf.scene))
+      this.object.position.set(posX, posY, posZ)
+      this.object.scale.set(2, 2, 2)
+      scene.add(this.object)
+    })
+  }
 }
+
+export default Bridge
