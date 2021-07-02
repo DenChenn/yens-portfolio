@@ -27,7 +27,7 @@ function buildCamera() {
     1,
     20000,
   )
-  camera.position.set(30, 30, 100)
+  camera.position.set(30, 40, 100)
   return camera
 }
 
@@ -47,7 +47,7 @@ const renderer = new THREE.WebGL1Renderer({
 
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
-camera.position.setZ(30)
+camera.position.set(120, 10, 100)
 
 renderer.render(scene, camera)
 
@@ -83,7 +83,7 @@ groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2)
 world.add(groundBody)
 const timeStep = 1.0 / 60.0
 
-const boat = new Boat(scene, world, groundMat, 100, 5, 100)
+const boat = new Boat(scene, world, groundMat, 100, 5, 100, camera)
 const bridge = new Bridge(scene, world, groundMat, -100, 5, 0)
 const stoneIsland_1 = new StoneIsland(scene, world, groundMat, 350, 5, 80)
 const stoneIsland_2 = new StoneIsland(scene, world, groundMat, -150, 5, -325)

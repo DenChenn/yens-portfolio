@@ -62,15 +62,18 @@ class Boat {
   back = new VelocityModel('s')
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
+  camera = new THREE.PerspectiveCamera()
   //testMesh = new THREE.Mesh()
 
-  constructor(scene, world, groundMat, posX, posY, posZ) {
+  constructor(scene, world, groundMat, posX, posY, posZ, camera) {
     const loader = new GLTFLoader()
     loader.load('../models/tiny_boat/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
       this.mesh.scale.set(0.1, 0.1, 0.1)
       scene.add(this.mesh)
     })
+
+    this.camera = camera
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
@@ -127,6 +130,16 @@ class Boat {
     this.mesh.quaternion.copy(this.boxBody.quaternion)
     // this.testMesh.position.copy(this.boxBody.position)
     // this.testMesh.quaternion.copy(this.boxBody.quaternion)
+
+    this.camera.position.copy(
+      new THREE.Vector3(
+        this.boxBody.position.x + 40,
+        this.boxBody.position.y + 40,
+        this.boxBody.position.z + 40,
+      ),
+    )
+    this.camera.quaternion.copy(this.boxBody.quaternion)
+    this.camera.lookAt(this.mesh.position)
   }
 }
 
