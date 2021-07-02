@@ -9,6 +9,14 @@ import Boat from './objects/boat'
 import StoneIsland from './objects/stone_island'
 import CANNON from 'cannon'
 import Tree from './objects/tree'
+import FlyingIsland from './objects/flying_island'
+import Castle1 from './objects/castle1'
+import Lantern from './objects/lantern'
+import Castle2 from './objects/castle2'
+import Castle3 from './objects/castle3'
+import Temple from './objects/temple'
+import Pagoda from './objects/pagoda'
+import StraightTree from './objects/straight_tree'
 
 const scene = new THREE.Scene()
 
@@ -78,20 +86,79 @@ groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2)
 world.add(groundBody)
 const timeStep = 1.0 / 60.0
 
-const boat = new Boat(scene, world, groundMat, 0, 5, 0)
+const boat = new Boat(scene, world, groundMat, 100, 5, 100)
 const bridge = new Bridge(scene, world, groundMat, -100, 5, 0)
-const stoneIsland = new StoneIsland(scene, world, groundMat, 0, 5, 100)
-const tree = new Tree(scene, world, groundMat, 150, 5, 0)
+const stoneIsland_1 = new StoneIsland(scene, world, groundMat, 350, 5, 80)
+const stoneIsland_2 = new StoneIsland(scene, world, groundMat, -150, 5, -325)
+const stoneIsland_3 = new StoneIsland(scene, world, groundMat, -350, 5, 80)
+const stoneIsland_4 = new StoneIsland(scene, world, groundMat, 170, 5, -320)
+const centerIsland = new StoneIsland(scene, world, groundMat, 0, 5, 0)
+const pagoda = new Pagoda(scene, world, groundMat, 0, 20, 0)
+
+const flyingIsland = new FlyingIsland(scene, world, groundMat, 0, 40, 350)
+const castle1 = new Castle1(scene, world, groundMat, -160, 20, -335)
+const castle2 = new Castle2(scene, world, groundMat, 160, 20, -335)
+const castle3 = new Castle3(scene, world, groundMat, -350, 20, 80)
+const temple = new Temple(scene, world, groundMat, 350, 20, 80)
+const tree = new Tree(scene, world, groundMat, -120, 20, -295)
+
+const rotateUnit = Math.PI / 18.0
+let lanternSet = []
+for (let i = 0; i < 2 * Math.PI - 0.1; i += rotateUnit) {
+  lanternSet.push(
+    new Lantern(
+      scene,
+      world,
+      groundMat,
+      245 * Math.cos(i),
+      2,
+      245 * Math.sin(i),
+    ),
+  )
+}
+
+const treeRotateUnit = Math.PI / 36
+let treeSet = []
+for (let i = 0; i < 2 * Math.PI - 0.01; i += treeRotateUnit) {
+  treeSet.push(
+    new StraightTree(
+      scene,
+      world,
+      groundMat,
+      500 * Math.cos(i),
+      2,
+      500 * Math.sin(i),
+    ),
+  )
+}
 
 function animate() {
   requestAnimationFrame(animate)
+  water.material.uniforms['time'].value += 1.0 / 60.0
+  world.step(timeStep)
+
   boat.update()
   bridge.update()
   tree.update()
-  stoneIsland.update()
-  water.material.uniforms['time'].value += 1.0 / 60.0
+  stoneIsland_1.update()
+  stoneIsland_2.update()
+  stoneIsland_3.update()
+  stoneIsland_4.update()
+  centerIsland.update()
+  flyingIsland.update()
+  castle1.update()
+  castle2.update()
+  castle3.update()
+  temple.update()
+  pagoda.update()
 
-  world.step(timeStep)
+  for (let i = 0; i < 36; i++) {
+    lanternSet[i].update()
+  }
+
+  for (let i = 0; i < 72; i++) {
+    treeSet[i].update()
+  }
 
   renderer.render(scene, camera)
 }
