@@ -22,7 +22,7 @@ class Lantern {
       scene.add(this.mesh)
     })
 
-    this.light = new THREE.PointLight(0xfafa11, 10, 50)
+    this.light = new THREE.PointLight(0xfafa11, 10, 10)
     this.light.position.set(posX, posY + 1, posZ)
     scene.add(this.light)
     const lightHelper = new THREE.PointLightHelper(this.light)

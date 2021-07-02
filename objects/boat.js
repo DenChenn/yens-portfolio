@@ -63,6 +63,7 @@ class Boat {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
   camera = new THREE.PerspectiveCamera()
+  cameraDis = 50
   //testMesh = new THREE.Mesh()
 
   constructor(scene, world, groundMat, posX, posY, posZ, camera) {
@@ -131,15 +132,19 @@ class Boat {
     // this.testMesh.position.copy(this.boxBody.position)
     // this.testMesh.quaternion.copy(this.boxBody.quaternion)
 
-    this.camera.position.copy(
+    this.camera.position.x =
+      this.boxBody.position.x + this.cameraDis * Math.cos(-this.front.theta)
+    this.camera.position.y = this.boxBody.position.y + 15
+    this.camera.position.z =
+      this.boxBody.position.z - this.cameraDis * Math.sin(-this.front.theta)
+
+    this.camera.lookAt(
       new THREE.Vector3(
-        this.boxBody.position.x + 40,
-        this.boxBody.position.y + 40,
-        this.boxBody.position.z + 40,
+        this.mesh.position.x,
+        this.mesh.position.y + 10,
+        this.mesh.position.z,
       ),
     )
-    this.camera.quaternion.copy(this.boxBody.quaternion)
-    this.camera.lookAt(this.mesh.position)
   }
 }
 
