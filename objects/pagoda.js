@@ -3,23 +3,29 @@ import * as THREE from 'three'
 import CANNON from 'cannon'
 
 const size = {
-  x: 113,
-  y: 43,
-  z: 53,
+  x: 10,
+  y: 10,
+  z: 10,
 }
 
-class FlyingIsland {
+class Pagoda {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
   testMesh = new THREE.Mesh()
+  light = new THREE.PointLight()
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('../models/flying_island/scene.gltf', (gltf) => {
+    loader.load('../models/pagoda/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
-      this.mesh.scale.set(6, 6, 6)
+      this.mesh.scale.set(4, 4, 4)
       scene.add(this.mesh)
     })
+    this.light = new THREE.PointLight(0xffffff, 10, 100)
+    this.light.position.set(posX, posY + 300, posZ)
+    scene.add(this.light)
+    const lightHelper = new THREE.PointLightHelper(this.light)
+    scene.add(lightHelper)
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
@@ -63,4 +69,4 @@ class FlyingIsland {
   }
 }
 
-export default FlyingIsland
+export default Pagoda

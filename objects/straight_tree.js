@@ -3,21 +3,21 @@ import * as THREE from 'three'
 import CANNON from 'cannon'
 
 const size = {
-  x: 113,
-  y: 43,
-  z: 53,
+  x: 3,
+  y: 5,
+  z: 3,
 }
 
-class FlyingIsland {
+class StraightTree {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
   testMesh = new THREE.Mesh()
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('../models/flying_island/scene.gltf', (gltf) => {
+    loader.load('../models/sakura_tree_2/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
-      this.mesh.scale.set(6, 6, 6)
+      this.mesh.scale.set(5, 5, 5)
       scene.add(this.mesh)
     })
 
@@ -63,4 +63,4 @@ class FlyingIsland {
   }
 }
 
-export default FlyingIsland
+export default StraightTree

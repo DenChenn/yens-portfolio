@@ -3,9 +3,9 @@ import * as THREE from 'three'
 import CANNON from 'cannon'
 
 const size = {
-  x: 38,
-  y: 5,
-  z: 38,
+  x: 85,
+  y: 4,
+  z: 85,
 }
 
 class StoneIsland {
@@ -17,14 +17,14 @@ class StoneIsland {
     const loader = new GLTFLoader()
     loader.load('../models/stone_island/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
-      this.mesh.scale.set(0.08, 0.08, 0.08)
+      this.mesh.scale.set(0.2, 0.2, 0.2)
       scene.add(this.mesh)
     })
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
     this.boxBody = new CANNON.Body({
-      mass: 1,
+      mass: 1000,
       shape: boxShape,
       position: new CANNON.Vec3(posX, posY, posZ),
       material: boxMat,

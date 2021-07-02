@@ -6,7 +6,7 @@ import CANNON from 'cannon'
 const size = {
   x: 12,
   y: 5,
-  z: 6,
+  z: 4,
 }
 
 class VelocityModel {

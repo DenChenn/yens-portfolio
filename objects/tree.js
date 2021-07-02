@@ -15,9 +15,9 @@ class Tree {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('../models/tree/scene.gltf', (gltf) => {
+    loader.load('../models/sakura_tree/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
-      this.mesh.scale.set(0.01, 0.01, 0.01)
+      this.mesh.scale.set(5, 6, 5)
       scene.add(this.mesh)
     })
 
