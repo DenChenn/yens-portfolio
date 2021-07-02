@@ -3,182 +3,137 @@
     {
       "bufferView": 2,
       "componentType": 5126,
-      "count": 772,
+      "count": 461,
       "max": [
-        3.2357349395751953,
-        3.3455569744110107,
-        13.38892936706543
+        0.4599192440509796,
+        0.4599192440509796,
+        2.2902016639709473
       ],
       "min": [
-        -3.2357349395751953,
-        -3.3455569744110107,
-        0
+        -0.4599192440509796,
+        -0.4599192440509796,
+        -0.6552814841270447
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 2,
-      "byteOffset": 9264,
+      "byteOffset": 5532,
       "componentType": 5126,
-      "count": 772,
+      "count": 461,
       "max": [
-        0.96654558181762695,
-        0.96592944860458374,
-        1
+        1.0,
+        1.0,
+        1.0
       ],
       "min": [
-        -0.96647417545318604,
-        -0.96597975492477417,
-        -1
+        -1.0,
+        -1.0,
+        -1.0
       ],
       "type": "VEC3"
     },
     {
-      "bufferView": 3,
-      "componentType": 5126,
-      "count": 772,
-      "max": [
-        0.96597981452941895,
-        0.96154659986495972,
-        1,
-        1
-      ],
-      "min": [
-        -0.96590089797973633,
-        -0.93152707815170288,
-        -1,
-        -1
-      ],
-      "type": "VEC4"
-    },
-    {
       "bufferView": 1,
       "componentType": 5126,
-      "count": 772,
+      "count": 461,
       "max": [
-        0.9941830039024353,
-        0.97720199823379517
+        0.996218204498291,
+        0.9925677180290222
       ],
       "min": [
-        0.0049789999611675739,
-        0.0041040000505745411
+        0.007380872964859009,
+        0.00922587513923645
       ],
       "type": "VEC2"
     },
     {
       "bufferView": 0,
       "componentType": 5125,
-      "count": 1458,
-      "max": [
-        771
-      ],
-      "min": [
-        0
-      ],
+      "count": 894,
       "type": "SCALAR"
     }
   ],
   "asset": {
     "extras": {
-      "author": "Obeonix (https://sketchfab.com/Obeonix)",
-      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
-      "source": "https://sketchfab.com/3d-models/japanese-standing-lantern-70aed3dc12274120809c97ee26e78fdb",
-      "title": "Japanese Standing Lantern"
+      "author": "Michalina \"Miszla\" Gąsienica-Laskowy (https://sketchfab.com/Miszla)",
+      "license": "CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)",
+      "source": "https://sketchfab.com/3d-models/low-poly-stylized-japanese-lantern-17bedd84ff3d464fa380f3b28ed4e2e5",
+      "title": "Low-poly Stylized Japanese Lantern"
     },
-    "generator": "Sketchfab-6.0.0",
+    "generator": "Sketchfab-11.20.1",
     "version": "2.0"
   },
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 5832,
-      "byteOffset": 0,
+      "byteLength": 3576,
       "name": "floatBufferViews",
       "target": 34963
     },
     {
       "buffer": 0,
-      "byteLength": 6176,
-      "byteOffset": 5832,
+      "byteLength": 3688,
+      "byteOffset": 3576,
       "byteStride": 8,
       "name": "floatBufferViews",
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 18528,
-      "byteOffset": 12008,
+      "byteLength": 11064,
+      "byteOffset": 7264,
       "byteStride": 12,
-      "name": "floatBufferViews",
-      "target": 34962
-    },
-    {
-      "buffer": 0,
-      "byteLength": 12352,
-      "byteOffset": 30536,
-      "byteStride": 16,
       "name": "floatBufferViews",
       "target": 34962
     }
   ],
   "buffers": [
     {
-      "byteLength": 42888,
+      "byteLength": 18328,
       "uri": "scene.bin"
     }
   ],
-  "extensionsRequired": [
-    "KHR_materials_pbrSpecularGlossiness"
-  ],
-  "extensionsUsed": [
-    "KHR_materials_pbrSpecularGlossiness"
-  ],
   "images": [
     {
-      "uri": "textures/Lanternlambert7SG_diffuse.png"
+      "uri": "textures/Material_baseColor.png"
+    },
+    {
+      "uri": "textures/Material_emissive.png"
     }
   ],
   "materials": [
     {
-      "doubleSided": false,
-      "extensions": {
-        "KHR_materials_pbrSpecularGlossiness": {
-          "diffuseFactor": [
-            1,
-            1,
-            1,
-            1
-          ],
-          "diffuseTexture": {
-            "index": 0,
-            "texCoord": 0
-          },
-          "glossinessFactor": 0.52267530487804881,
-          "specularFactor": [
-            1,
-            1,
-            1
-          ],
-          "specularGlossinessTexture": {
-            "index": 0,
-            "texCoord": 0
-          }
-        }
+      "doubleSided": true,
+      "emissiveFactor": [
+        0.8342915928639254,
+        0.8342915928639254,
+        0.8342915928639254
+      ],
+      "emissiveTexture": {
+        "index": 1
       },
-      "name": "Lanternlambert7SG"
+      "name": "Material",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "roughnessFactor": 0.9313285670129543
+      }
     }
   ],
   "meshes": [
     {
+      "name": "Plane_Material_0",
       "primitives": [
         {
           "attributes": {
             "NORMAL": 1,
             "POSITION": 0,
-            "TANGENT": 2,
-            "TEXCOORD_0": 3
+            "TEXCOORD_0": 2
           },
-          "indices": 4,
+          "indices": 3,
           "material": 0,
           "mode": 4
         }
@@ -190,29 +145,83 @@
       "children": [
         1
       ],
-      "name": "RootNode (gltf orientation matrix)",
-      "rotation": [
-        -0.70710678118654746,
-        -0,
-        -0,
-        0.70710678118654757
-      ]
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
     },
     {
       "children": [
         2
       ],
-      "name": "RootNode (model correction matrix)"
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "18ee79f1e57c4426b5faca08e8966e86.fbx"
     },
     {
       "children": [
         3
       ],
-      "name": "Lantern.obj.cleaner.materialmerger.gles"
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.629206793918314e-05,
+        -99.99999999999868,
+        0.0,
+        0.0,
+        99.99999999999868,
+        -1.629206793918314e-05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Plane"
     },
     {
       "mesh": 0,
-      "name": ""
+      "name": "Plane_Material_0"
     }
   ],
   "samplers": [
@@ -226,7 +235,7 @@
   "scene": 0,
   "scenes": [
     {
-      "name": "OSG_Scene",
+      "name": "Sketchfab_Scene",
       "nodes": [
         0
       ]
@@ -236,7 +245,10 @@
     {
       "sampler": 0,
       "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
     }
   ]
 }
-

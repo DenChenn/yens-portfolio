@@ -5,7 +5,7 @@ import CANNON from 'cannon'
 
 const size = {
   x: 12,
-  y: 5,
+  y: 3,
   z: 4,
 }
 
@@ -31,10 +31,10 @@ class VelocityModel {
         this.a = ACCELERATION
       }
       if (keyPress === 'd') {
-        this.theta += Math.PI / 100
+        this.theta += Math.PI / 150
       }
       if (keyPress === 'a') {
-        this.theta -= Math.PI / 100
+        this.theta -= Math.PI / 150
       }
     })
 
