@@ -9,6 +9,8 @@ const size = {
   z: 4,
 }
 
+const cannonVector = new CANNON.Vec3(0, 1, 0)
+
 class VelocityModel {
   v = 0
   a = 0
@@ -64,6 +66,7 @@ class Boat {
   boxBody = new CANNON.Body()
   camera = new THREE.PerspectiveCamera()
   cameraDis = 50
+  lookAtPosition = new THREE.Vector3()
   //testMesh = new THREE.Mesh()
 
   constructor(scene, world, groundMat, posX, posY, posZ, camera) {
@@ -122,10 +125,7 @@ class Boat {
     this.boxBody.position.z += this.back.v * Math.sin(this.front.theta)
 
     this.mesh.rotation.y = -this.front.theta
-    this.boxBody.quaternion.setFromAxisAngle(
-      new CANNON.Vec3(0, 1, 0),
-      this.mesh.rotation.y,
-    )
+    this.boxBody.quaternion.setFromAxisAngle(cannonVector, this.mesh.rotation.y)
 
     this.mesh.position.copy(this.boxBody.position)
     this.mesh.quaternion.copy(this.boxBody.quaternion)
@@ -138,13 +138,10 @@ class Boat {
     this.camera.position.z =
       this.boxBody.position.z - this.cameraDis * Math.sin(-this.front.theta)
 
-    this.camera.lookAt(
-      new THREE.Vector3(
-        this.mesh.position.x,
-        this.mesh.position.y + 10,
-        this.mesh.position.z,
-      ),
-    )
+    this.lookAtPosition.x = this.mesh.position.x
+    this.lookAtPosition.y = this.mesh.position.y + 10
+    this.lookAtPosition.z = this.mesh.position.z
+    this.camera.lookAt(this.lookAtPosition)
   }
 }
 
