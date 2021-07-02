@@ -52,7 +52,7 @@ camera.position.setZ(30)
 renderer.render(scene, camera)
 
 const pointLight = new THREE.PointLight(0xffffff)
-const ambienLight = new THREE.AmbientLight(0xfffff)
+const ambienLight = new THREE.AmbientLight(0xfaf398, 1)
 
 scene.add(pointLight, ambienLight)
 
@@ -62,11 +62,8 @@ scene.add(lightHelper)
 const controls = new OrbitControls(camera, renderer.domElement)
 
 const water = BuildWater(scene)
-const sky = BuildSky()
 
 scene.add(water)
-scene.add(sky)
-BuildSun(scene, renderer, sky)
 
 const world = new CANNON.World()
 

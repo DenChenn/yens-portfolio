@@ -12,6 +12,7 @@ class Lantern {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
   testMesh = new THREE.Mesh()
+  light = new THREE.PointLight()
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
@@ -20,6 +21,12 @@ class Lantern {
       this.mesh.scale.set(0.5, 0.5, 0.5)
       scene.add(this.mesh)
     })
+
+    this.light = new THREE.PointLight(0xfafa11, 10, 50)
+    this.light.position.set(posX, posY + 1, posZ)
+    scene.add(this.light)
+    const lightHelper = new THREE.PointLightHelper(this.light)
+    scene.add(lightHelper)
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
