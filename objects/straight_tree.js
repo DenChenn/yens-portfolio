@@ -11,8 +11,8 @@ const size = {
 class StraightTree {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
-  testMesh = new THREE.Mesh()
-  light = new THREE.PointLight()
+  //testMesh = new THREE.Mesh()
+  //light = new THREE.PointLight()
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
@@ -22,11 +22,11 @@ class StraightTree {
       scene.add(this.mesh)
     })
 
-    this.light = new THREE.PointLight(0xff69b4, 40, 50)
-    this.light.position.set(posX, posY + 50, posZ)
-    scene.add(this.light)
-    const lightHelper = new THREE.PointLightHelper(this.light)
-    scene.add(lightHelper)
+    // this.light = new THREE.PointLight(0xff69b4, 40, 50)
+    // this.light.position.set(posX, posY + 50, posZ)
+    // scene.add(this.light)
+    // const lightHelper = new THREE.PointLightHelper(this.light)
+    // scene.add(lightHelper)
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
@@ -45,28 +45,28 @@ class StraightTree {
     })
     world.addContactMaterial(boxGroundContact)
 
-    let boxG = new THREE.BoxGeometry(
-      2 * size.x,
-      2 * size.y,
-      2 * size.z,
-      2,
-      1,
-      2,
-    )
-    let boxM = new THREE.MeshStandardMaterial({
-      color: 0x33aaaa,
-      wireframe: true,
-    })
+    // let boxG = new THREE.BoxGeometry(
+    //   2 * size.x,
+    //   2 * size.y,
+    //   2 * size.z,
+    //   2,
+    //   1,
+    //   2,
+    // )
+    // let boxM = new THREE.MeshStandardMaterial({
+    //   color: 0x33aaaa,
+    //   wireframe: true,
+    // })
 
-    this.testMesh = new THREE.Mesh(boxG, boxM)
-    this.testMesh.position.set(posX, posY, posZ)
-    scene.add(this.testMesh)
+    // this.testMesh = new THREE.Mesh(boxG, boxM)
+    // this.testMesh.position.set(posX, posY, posZ)
+    // scene.add(this.testMesh)
   }
   update() {
     this.mesh.position.copy(this.boxBody.position)
     this.mesh.quaternion.copy(this.boxBody.quaternion)
-    this.testMesh.position.copy(this.boxBody.position)
-    this.testMesh.quaternion.copy(this.boxBody.quaternion)
+    // this.testMesh.position.copy(this.boxBody.position)
+    // this.testMesh.quaternion.copy(this.boxBody.quaternion)
   }
 }
 
