@@ -33,10 +33,10 @@ class VelocityModel {
         this.a = ACCELERATION
       }
       if (keyPress === 'd') {
-        this.theta += Math.PI / 150
+        this.theta += Math.PI / 256
       }
       if (keyPress === 'a') {
-        this.theta -= Math.PI / 150
+        this.theta -= Math.PI / 256
       }
     })
 
@@ -65,7 +65,7 @@ class Boat {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
   camera = new THREE.PerspectiveCamera()
-  cameraDis = 50
+  cameraDis = 40
   lookAtPosition = new THREE.Vector3()
   //testMesh = new THREE.Mesh()
 
@@ -82,7 +82,7 @@ class Boat {
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
     this.boxBody = new CANNON.Body({
-      mass: 5,
+      mass: 50,
       shape: boxShape,
       position: new CANNON.Vec3(posX, posY, posZ),
       material: boxMat,

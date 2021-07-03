@@ -24,7 +24,7 @@ class StoneIsland {
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
     this.boxBody = new CANNON.Body({
-      mass: 1000,
+      mass: 10000,
       shape: boxShape,
       position: new CANNON.Vec3(posX, posY, posZ),
       material: boxMat,

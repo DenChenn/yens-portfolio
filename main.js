@@ -17,6 +17,7 @@ import Castle3 from './objects/castle3'
 import Temple from './objects/temple'
 import Pagoda from './objects/pagoda'
 import StraightTree from './objects/straight_tree'
+import Stats from 'stats.js'
 
 const scene = new THREE.Scene()
 
@@ -129,8 +130,12 @@ for (let i = 0; i < 2 * Math.PI - 0.01; i += treeRotateUnit) {
   )
 }
 
+var stats = new Stats()
+stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom)
+
 function animate() {
-  requestAnimationFrame(animate)
+  stats.begin()
   water.material.uniforms['time'].value += 1.0 / 60.0
   world.step(timeStep)
 
@@ -158,6 +163,8 @@ function animate() {
   }
 
   renderer.render(scene, camera)
+  stats.end()
+  requestAnimationFrame(animate)
 }
 
 animate()
