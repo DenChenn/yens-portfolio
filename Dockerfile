@@ -5,6 +5,7 @@ COPY package.json /app
 RUN npm install
 COPY . /app
 RUN npm run build
+RUN ls
 
 FROM nginx:1.13.3-alpine
 RUN rm -rf /usr/share/nginx/html/*
