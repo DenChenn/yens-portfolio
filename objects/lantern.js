@@ -16,11 +16,14 @@ class Lantern {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('../models/japanese_lantern/scene.gltf', (gltf) => {
-      this.mesh = gltf.scene
-      this.mesh.scale.set(0.05, 0.05, 0.05)
-      scene.add(this.mesh)
-    })
+    loader.load(
+      'https://github.com/SwarzChen/yens-portfolio/blob/master/models/japanese_lantern/scene.gltf',
+      (gltf) => {
+        this.mesh = gltf.scene
+        this.mesh.scale.set(0.05, 0.05, 0.05)
+        scene.add(this.mesh)
+      },
+    )
 
     // this.light = new THREE.PointLight(0xfafa11, 10, 10)
     // this.light.position.set(posX, posY + 1, posZ)

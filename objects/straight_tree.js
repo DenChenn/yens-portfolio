@@ -16,11 +16,14 @@ class StraightTree {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('../models/sakura_tree_2/scene.gltf', (gltf) => {
-      this.mesh = gltf.scene
-      this.mesh.scale.set(5, 5, 5)
-      scene.add(this.mesh)
-    })
+    loader.load(
+      'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/sakura_tree_2/scene.gltf',
+      (gltf) => {
+        this.mesh = gltf.scene
+        this.mesh.scale.set(5, 5, 5)
+        scene.add(this.mesh)
+      },
+    )
 
     // this.light = new THREE.PointLight(0xff69b4, 40, 50)
     // this.light.position.set(posX, posY + 50, posZ)

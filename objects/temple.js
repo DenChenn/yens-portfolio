@@ -15,11 +15,14 @@ class Temple {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('../models/japanese_temple/scene.gltf', (gltf) => {
-      this.mesh = gltf.scene
-      this.mesh.scale.set(2, 2, 2)
-      scene.add(this.mesh)
-    })
+    loader.load(
+      'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/japanese_temple/scene.gltf',
+      (gltf) => {
+        this.mesh = gltf.scene
+        this.mesh.scale.set(2, 2, 2)
+        scene.add(this.mesh)
+      },
+    )
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()

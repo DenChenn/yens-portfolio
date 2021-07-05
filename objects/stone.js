@@ -7,12 +7,15 @@ class Stone {
 
   constructor(scene, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('../models/stone/scene.gltf', (gltf) => {
-      this.object.add(SkeletonUtils.clone(gltf.scene))
-      this.object.position.set(posX, posY, posZ)
-      this.object.scale.set(0.1, 0.1, 0.1)
-      scene.add(this.object)
-    })
+    loader.load(
+      'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/stone/scene.gltf',
+      (gltf) => {
+        this.object.add(SkeletonUtils.clone(gltf.scene))
+        this.object.position.set(posX, posY, posZ)
+        this.object.scale.set(0.1, 0.1, 0.1)
+        scene.add(this.object)
+      },
+    )
   }
 }
 
