@@ -17,7 +17,7 @@ class Lantern {
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
     loader.load(
-      'https://github.com/SwarzChen/yens-portfolio/blob/master/models/japanese_lantern/scene.gltf',
+      'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/japanese_lantern/scene.gltf',
       (gltf) => {
         this.mesh = gltf.scene
         this.mesh.scale.set(0.05, 0.05, 0.05)
