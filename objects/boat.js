@@ -71,11 +71,14 @@ class Boat {
 
   constructor(scene, world, groundMat, posX, posY, posZ, camera) {
     const loader = new GLTFLoader()
-    loader.load('../models/tiny_boat/scene.gltf', (gltf) => {
-      this.mesh = gltf.scene
-      this.mesh.scale.set(0.1, 0.1, 0.1)
-      scene.add(this.mesh)
-    })
+    loader.load(
+      'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/tiny_boat/scene.gltf',
+      (gltf) => {
+        this.mesh = gltf.scene
+        this.mesh.scale.set(0.1, 0.1, 0.1)
+        scene.add(this.mesh)
+      },
+    )
 
     this.camera = camera
 
