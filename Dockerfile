@@ -9,4 +9,4 @@ RUN ls
 
 FROM nginx:1.13.3-alpine
 RUN rm -rf /usr/share/nginx/html/*
-COPY --from=builder /usr/src/app/dist/index.html /usr/share/nginx/html
+COPY --from=builder /usr/src/app/index.html /usr/share/nginx/html
