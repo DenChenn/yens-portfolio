@@ -1,9 +1,14 @@
-name: Build and Deploy to Google Cloud Run
+name: Build and Deploy to Cloud Run
 
 on:
   push:
     branches:
-    - master
+      - master
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  SERVICE_NAME: personal-website
+  RUN_REGION: us-central1
 
 jobs:
   setup-build-deploy:
@@ -11,18 +16,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    # Setup gcloud CLI
-    - uses: google-github-actions/setup-gcloud@master
-      with:
-        version: '286.0.0'
-        service_account_email: ${{ secrets.GCP_SA_EMAIL }}
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
-        export_default_credentials: true
-        
-    # Print gcloud info
-    - name: Info
-      run: gcloud info
+      # Setup gcloud CLI
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          version: '286.0.0'
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          export_default_credentials: true
+
+      # Print gcloud info
+      - name: Info
+        run: gcloud info
+
+      # Build and push image to Google Container Registry
+      - name: Build and push docker image to Google Container Registry
+        run: |-
+          gcloud builds submit \
+            --quiet \
+            --tag "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA"
+
+      # Deploy image to Cloud Run
+      - name: Deploy image to Google Cloud Run
+        run: |-
+          gcloud run deploy "$SERVICE_NAME" \
+            --quiet \
+            --region "$RUN_REGION" \
+            --image "gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA" \
+            --platform "managed" \
+            --port 80 \
+            --allow-unauthenticated
