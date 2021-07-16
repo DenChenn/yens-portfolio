@@ -1,0 +1,37 @@
+#hint {
+  position: absolute;
+  width: 50vw;
+  height: 10vh;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  background-color: #ffffffc2;
+  border-radius: 25px 25px 0 0;
+  border: solid #a09c9c 3px;
+  opacity: 0;
+}
+
+#hint > .left {
+  position: relative;
+  width: 20%;
+  height: 70%;
+  font-size: 3em;
+  text-align: center;
+}
+
+#hint > .middle {
+  position: relative;
+  width: 10%;
+  height: 70%;
+}
+
+#hint > .right {
+  position: relative;
+  width: 40%;
+  height: 70%;
+  font-size: 3em;
+  text-align: center;
+}
