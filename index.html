@@ -16,18 +16,21 @@
     />
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="./style/skill.css" />
+    <link rel="stylesheet" href="./style/hint.css" />
     <title>Yen Ting Chen</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
     <script>
       $(function () {
         $('#skill').load('./page/skill.html')
+        $('#hint').load('./page/hint.html')
       })
     </script>
   </head>
   <body>
     <div id="app">
       <div id="skill"></div>
+      <div id="hint"></div>
     </div>
     <script type="module" src="/animation/skill_animation.js"></script>
     <canvas id="bg"></canvas>

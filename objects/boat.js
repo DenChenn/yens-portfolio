@@ -146,6 +146,10 @@ class Boat {
     this.lookAtPosition.z = this.mesh.position.z
     this.camera.lookAt(this.lookAtPosition)
   }
+
+  getPosition() {
+    return this.boxBody.position
+  }
 }
 
 export default Boat
