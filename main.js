@@ -1,9 +1,6 @@
-import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { BuildWater } from './objects/water'
-import { BuildSky } from './objects/sky'
-import { BuildSun } from './objects/sun'
 import Bridge from './objects/bridge'
 import Boat from './objects/boat'
 import StoneIsland from './objects/stone_island'
@@ -18,6 +15,9 @@ import Temple from './objects/temple'
 import Pagoda from './objects/pagoda'
 import StraightTree from './objects/straight_tree'
 import Stats from 'stats.js'
+import { CheckPosition } from './animation/check_position'
+import { HintAnimate } from './animation/hint_animation'
+import { SkillAnimate } from './animation/skill_animation'
 
 const scene = new THREE.Scene()
 
@@ -161,6 +161,10 @@ function animate() {
   for (let i = 0; i < 72; i++) {
     treeSet[i].update()
   }
+
+  let toggle = CheckPosition(boat, bridge)
+  HintAnimate(toggle)
+  SkillAnimate(toggle, toggle)
 
   renderer.render(scene, camera)
   stats.end()
