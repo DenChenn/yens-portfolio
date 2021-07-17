@@ -15,6 +15,11 @@ import CastleEdgeSet from './objects/castleEdge/castle_edge_set'
 import DokanSet from './objects/dokan/dokan_set'
 import DokanEdgeSet from './objects/dokan_edge/dokan_edge_set'
 import HighCastleSet from './objects/high_castle/high_castle_set'
+import BigCastleSet from './objects/big_castle/big_castle_set'
+import GateSet2 from './objects/gate2/gate_2_set'
+import WallSet2 from './objects/wall_2/wall_2_set'
+import GateSet from './objects/gate/gate_set'
+import WallSet from './objects/wall/wall_get'
 
 const scene = new THREE.Scene()
 
@@ -25,7 +30,7 @@ function buildCamera() {
     1,
     20000,
   )
-  camera.position.set(30, 40, 100)
+  camera.position.set(2400, 40, -500)
   return camera
 }
 
@@ -45,7 +50,7 @@ const renderer = new THREE.WebGL1Renderer({
 
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
-camera.position.set(120, 10, 100)
+camera.position.set(2400, 40, -500)
 
 renderer.render(scene, camera)
 
@@ -92,6 +97,11 @@ const castleEdgeSet = new CastleEdgeSet(scene, world, groundMat)
 const dokanSet = new DokanSet(scene, world, groundMat)
 const dokanEdgeSet = new DokanEdgeSet(scene, world, groundMat)
 const highCastleSet = new HighCastleSet(scene, world, groundMat)
+const bigCastleSet = new BigCastleSet(scene, world, groundMat)
+const gateSet = new GateSet(scene, world, groundMat)
+const gateSet2 = new GateSet2(scene, world, groundMat)
+const wallSet = new WallSet(scene, world, groundMat)
+const wallSet2 = new WallSet2(scene, world, groundMat)
 
 var stats = new Stats()
 stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
@@ -109,7 +119,11 @@ function animate() {
   dokanSet.updateAll()
   dokanEdgeSet.updateAll()
   highCastleSet.updateAll()
-
+  bigCastleSet.updateAll()
+  gateSet.updateAll()
+  gateSet2.updateAll()
+  wallSet.updateAll()
+  wallSet2.updateAll()
   renderer.render(scene, camera)
   stats.end()
   requestAnimationFrame(animate)
