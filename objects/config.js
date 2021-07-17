@@ -14,7 +14,7 @@ export const JAPANESE_BIG_TREE =
 export const JAPANESE_CASTLE_EDGE =
   'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/japanese_castle_edge/scene.gltf'
 export const JAPANESE_DOKAN =
-  'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/japanese_castle_edge/scene.gltf'
+  'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/japanese_dokan/scene.gltf'
 export const JAPANESE_DOKAN_EDGE =
   'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/japanese_dokan_edge/scene.gltf'
 export const JAPANESE_GATE =
