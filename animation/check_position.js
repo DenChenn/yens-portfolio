@@ -1,9 +1,11 @@
 export const CheckPosition = (boat, bridge) => {
   const boatVec = boat.getPosition()
   const bridgeVec = bridge.getPosition()
-  if (distance(boatVec, bridgeVec) < 500) {
+  if (distance(boatVec, bridgeVec) < 30000) {
+    console.log('true')
     return true
   } else {
+    console.log('false')
     return false
   }
 }
