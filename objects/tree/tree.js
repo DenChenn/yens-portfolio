@@ -3,21 +3,21 @@ import * as THREE from 'three'
 import CANNON from 'cannon'
 
 const size = {
-  x: 100,
+  x: 5,
   y: 5,
-  z: 50,
+  z: 5,
 }
 
-class Gate {
+class Tree {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
   //testMesh = new THREE.Mesh()
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('./models/japanese_gate/scene.gltf', (gltf) => {
+    loader.load('./models/japanese_big_tree/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
-      this.mesh.scale.set(10, 10, 10)
+      this.mesh.scale.set(5, 6, 5)
       scene.add(this.mesh)
     })
 
@@ -61,9 +61,6 @@ class Gate {
     // this.testMesh.position.copy(this.boxBody.position)
     // this.testMesh.quaternion.copy(this.boxBody.quaternion)
   }
-  getPosition() {
-    return this.boxBody.position
-  }
 }
 
-export default Gate
+export default Tree

@@ -3,28 +3,35 @@ import * as THREE from 'three'
 import CANNON from 'cannon'
 
 const size = {
-  x: 50,
+  x: 40,
   y: 5,
-  z: 100,
+  z: 10,
 }
 
-class Gate2 {
+class RedGate {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
-  //testMesh = new THREE.Mesh()
+  testMesh = new THREE.Mesh()
+  light = new THREE.PointLight()
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('./models/japanese_gate_2/scene.gltf', (gltf) => {
+    loader.load('./models/japanese_red_gate/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
-      this.mesh.scale.set(10, 10, 10)
+      this.mesh.scale.set(25, 25, 25)
       scene.add(this.mesh)
     })
+
+    this.light = new THREE.PointLight(0xff69b4, 40, 50)
+    this.light.position.set(posX, posY + 50, posZ)
+    scene.add(this.light)
+    const lightHelper = new THREE.PointLightHelper(this.light)
+    scene.add(lightHelper)
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
     this.boxBody = new CANNON.Body({
-      mass: 1,
+      mass: 100,
       shape: boxShape,
       position: new CANNON.Vec3(posX, posY, posZ),
       material: boxMat,
@@ -38,32 +45,29 @@ class Gate2 {
     })
     world.addContactMaterial(boxGroundContact)
 
-    // let boxG = new THREE.BoxGeometry(
-    //   2 * size.x,
-    //   2 * size.y,
-    //   2 * size.z,
-    //   2,
-    //   1,
-    //   2,
-    // )
-    // let boxM = new THREE.MeshStandardMaterial({
-    //   color: 0x33aaaa,
-    //   wireframe: true,
-    // })
+    let boxG = new THREE.BoxGeometry(
+      2 * size.x,
+      2 * size.y,
+      2 * size.z,
+      2,
+      1,
+      2,
+    )
+    let boxM = new THREE.MeshStandardMaterial({
+      color: 0x33aaaa,
+      wireframe: true,
+    })
 
-    // this.testMesh = new THREE.Mesh(boxG, boxM)
-    // this.testMesh.position.set(posX, posY, posZ)
-    // scene.add(this.testMesh)
+    this.testMesh = new THREE.Mesh(boxG, boxM)
+    this.testMesh.position.set(posX, posY, posZ)
+    scene.add(this.testMesh)
   }
   update() {
     this.mesh.position.copy(this.boxBody.position)
     this.mesh.quaternion.copy(this.boxBody.quaternion)
-    // this.testMesh.position.copy(this.boxBody.position)
-    // this.testMesh.quaternion.copy(this.boxBody.quaternion)
-  }
-  getPosition() {
-    return this.boxBody.position
+    this.testMesh.position.copy(this.boxBody.position)
+    this.testMesh.quaternion.copy(this.boxBody.quaternion)
   }
 }
 
-export default Gate2
+export default RedGate

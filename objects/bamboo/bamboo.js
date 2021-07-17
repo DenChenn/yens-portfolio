@@ -4,25 +4,22 @@ import CANNON from 'cannon'
 
 const size = {
   x: 5,
-  y: 10,
-  z: 5,
+  y: 5,
+  z: 3,
 }
 
-class Tree {
+class Bamboo {
   mesh = new THREE.Mesh()
   boxBody = new CANNON.Body()
   //testMesh = new THREE.Mesh()
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load(
-      'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/sakura_tree/scene.gltf',
-      (gltf) => {
-        this.mesh = gltf.scene
-        this.mesh.scale.set(5, 6, 5)
-        scene.add(this.mesh)
-      },
-    )
+    loader.load('./models/bamboo/scene.gltf', (gltf) => {
+      this.mesh = gltf.scene
+      this.mesh.scale.set(10, 10, 10)
+      scene.add(this.mesh)
+    })
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
@@ -66,4 +63,4 @@ class Tree {
   }
 }
 
-export default Tree
+export default Bamboo

@@ -74,11 +74,11 @@ class Boat {
     loader.load('../models/boat/scene.gltf', (gltf) => {
       this.mesh = gltf.scene
       this.mesh.rotation.x = Math.PI / 2
-      this.mesh.scale.set(1, 1, 1)
+      this.mesh.scale.set(2.5, 2.5, 2.5)
       scene.add(this.mesh)
     })
 
-    //this.camera = camera
+    this.camera = camera
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
@@ -133,11 +133,11 @@ class Boat {
     this.testMesh.position.copy(this.boxBody.position)
     this.testMesh.quaternion.copy(this.boxBody.quaternion)
 
-    // this.camera.position.x =
-    //   this.boxBody.position.x + this.cameraDis * Math.cos(-this.front.theta)
-    // this.camera.position.y = this.boxBody.position.y + 15
-    // this.camera.position.z =
-    //   this.boxBody.position.z - this.cameraDis * Math.sin(-this.front.theta)
+    this.camera.position.x =
+      this.boxBody.position.x + this.cameraDis * Math.sin(-this.front.theta)
+    this.camera.position.y = this.boxBody.position.y + 20
+    this.camera.position.z =
+      this.boxBody.position.z - this.cameraDis * Math.cos(-this.front.theta)
 
     this.lookAtPosition.x = this.mesh.position.x
     this.lookAtPosition.y = this.mesh.position.y + 10

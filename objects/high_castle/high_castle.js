@@ -31,35 +31,35 @@ class HighCastle {
     })
     world.add(this.boxBody)
 
-    let boxGroundContact
-    boxGroundContact = new CANNON.ContactMaterial(groundMat, boxMat, {
-      friction: 0.5,
-      restitution: 0.7,
-    })
-    world.addContactMaterial(boxGroundContact)
+    // let boxGroundContact
+    // boxGroundContact = new CANNON.ContactMaterial(groundMat, boxMat, {
+    //   friction: 0.5,
+    //   restitution: 0.7,
+    // })
+    // world.addContactMaterial(boxGroundContact)
 
-    let boxG = new THREE.BoxGeometry(
-      2 * size.x,
-      2 * size.y,
-      2 * size.z,
-      2,
-      1,
-      2,
-    )
-    let boxM = new THREE.MeshStandardMaterial({
-      color: 0x33aaaa,
-      wireframe: true,
-    })
+    // let boxG = new THREE.BoxGeometry(
+    //   2 * size.x,
+    //   2 * size.y,
+    //   2 * size.z,
+    //   2,
+    //   1,
+    //   2,
+    // )
+    // let boxM = new THREE.MeshStandardMaterial({
+    //   color: 0x33aaaa,
+    //   wireframe: true,
+    // })
 
-    this.testMesh = new THREE.Mesh(boxG, boxM)
-    this.testMesh.position.set(posX, posY, posZ)
-    scene.add(this.testMesh)
+    // this.testMesh = new THREE.Mesh(boxG, boxM)
+    // this.testMesh.position.set(posX, posY, posZ)
+    // scene.add(this.testMesh)
   }
   update() {
     this.mesh.position.copy(this.boxBody.position)
     this.mesh.quaternion.copy(this.boxBody.quaternion)
-    this.testMesh.position.copy(this.boxBody.position)
-    this.testMesh.quaternion.copy(this.boxBody.quaternion)
+    // this.testMesh.position.copy(this.boxBody.position)
+    // this.testMesh.quaternion.copy(this.boxBody.quaternion)
   }
 }
 

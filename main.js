@@ -20,6 +20,9 @@ import GateSet2 from './objects/gate2/gate_2_set'
 import WallSet2 from './objects/wall_2/wall_2_set'
 import GateSet from './objects/gate/gate_set'
 import WallSet from './objects/wall/wall_get'
+import TreeSet from './objects/tree/tree_set'
+import RedGateSet from './objects/red_gate/red_gate_set'
+import BambooSet from './objects/bamboo/bamboo_set'
 
 const scene = new THREE.Scene()
 
@@ -55,7 +58,7 @@ camera.position.set(2400, 40, -500)
 renderer.render(scene, camera)
 
 const pointLight = new THREE.PointLight(0xffffff)
-const ambienLight = new THREE.AmbientLight(0xfaf398, 1)
+const ambienLight = new THREE.AmbientLight(0x4f4d4d, 1)
 
 scene.add(pointLight, ambienLight)
 
@@ -102,6 +105,9 @@ const gateSet = new GateSet(scene, world, groundMat)
 const gateSet2 = new GateSet2(scene, world, groundMat)
 const wallSet = new WallSet(scene, world, groundMat)
 const wallSet2 = new WallSet2(scene, world, groundMat)
+const treeSet = new TreeSet(scene, world, groundMat)
+const redGateSet = new RedGateSet(scene, world, groundMat)
+const bambooSet = new BambooSet(scene, world, groundMat)
 
 var stats = new Stats()
 stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
@@ -124,6 +130,10 @@ function animate() {
   gateSet2.updateAll()
   wallSet.updateAll()
   wallSet2.updateAll()
+  treeSet.updateAll()
+  redGateSet.updateAll()
+  bambooSet.updateAll()
+
   renderer.render(scene, camera)
   stats.end()
   requestAnimationFrame(animate)
