@@ -8,6 +8,7 @@ RUN npm run build
 RUN ls
 
 FROM nginx:1.13.3-alpine
+RUN cat /etc/nginx/conf.d/default.conf
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY --from=builder /app/page /usr/share/nginx/html
