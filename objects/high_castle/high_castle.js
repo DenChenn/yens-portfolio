@@ -1,6 +1,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 import CANNON from 'cannon'
+import { JAPANESE_HIGH_CASTLE } from '../config'
 
 const size = {
   x: 110,
@@ -15,7 +16,7 @@ class HighCastle {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('./models/japanese_high_castle/scene.gltf', (gltf) => {
+    loader.load(JAPANESE_HIGH_CASTLE, (gltf) => {
       this.mesh = gltf.scene
       this.mesh.scale.set(10, 10, 10)
       scene.add(this.mesh)

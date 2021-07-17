@@ -1,6 +1,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 import CANNON from 'cannon'
+import { BAMBOO } from '../config'
 
 const size = {
   x: 5,
@@ -15,7 +16,7 @@ class Bamboo {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('./models/bamboo/scene.gltf', (gltf) => {
+    loader.load(BAMBOO, (gltf) => {
       this.mesh = gltf.scene
       this.mesh.scale.set(10, 10, 10)
       scene.add(this.mesh)

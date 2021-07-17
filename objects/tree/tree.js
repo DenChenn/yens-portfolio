@@ -1,6 +1,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 import CANNON from 'cannon'
+import { JAPANESE_BIG_TREE } from '../config'
 
 const size = {
   x: 5,
@@ -15,7 +16,7 @@ class Tree {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('./models/japanese_big_tree/scene.gltf', (gltf) => {
+    loader.load(JAPANESE_BIG_TREE, (gltf) => {
       this.mesh = gltf.scene
       this.mesh.scale.set(5, 6, 5)
       scene.add(this.mesh)

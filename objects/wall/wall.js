@@ -1,6 +1,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 import CANNON from 'cannon'
+import { WALL_1 } from '../config'
 
 const size = {
   x: 130,
@@ -16,7 +17,7 @@ class Wall {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('./models/wall_1/scene.gltf', (gltf) => {
+    loader.load(WALL_1, (gltf) => {
       this.mesh = gltf.scene
       this.mesh.scale.set(25, 25, 25)
       scene.add(this.mesh)

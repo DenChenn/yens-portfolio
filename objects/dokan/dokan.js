@@ -1,6 +1,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
 import CANNON from 'cannon'
+import { JAPANESE_DOKAN } from '../config'
 
 const size = {
   x: 80,
@@ -15,7 +16,7 @@ class Dokan {
 
   constructor(scene, world, groundMat, posX, posY, posZ) {
     const loader = new GLTFLoader()
-    loader.load('./models/japanese_dokan/scene.gltf', (gltf) => {
+    loader.load(JAPANESE_DOKAN, (gltf) => {
       this.mesh = gltf.scene
       this.mesh.scale.set(8, 8, 8)
       scene.add(this.mesh)
