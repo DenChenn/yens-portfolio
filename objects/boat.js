@@ -1,6 +1,6 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as THREE from 'three'
-import { MAX_VELOCITY, ACCELERATION } from './config'
+import { MAX_VELOCITY, ACCELERATION, BOAT } from './config'
 import CANNON from 'cannon'
 
 const size = {
@@ -71,7 +71,7 @@ class Boat {
 
   constructor(scene, world, groundMat, posX, posY, posZ, camera) {
     const loader = new GLTFLoader()
-    loader.load('../models/boat/scene.gltf', (gltf) => {
+    loader.load(BOAT, (gltf) => {
       this.mesh = gltf.scene
       this.mesh.rotation.x = Math.PI / 2
       this.mesh.scale.set(2.5, 2.5, 2.5)
