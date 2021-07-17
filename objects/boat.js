@@ -4,9 +4,9 @@ import { MAX_VELOCITY, ACCELERATION } from './config'
 import CANNON from 'cannon'
 
 const size = {
-  x: 12,
-  y: 3,
-  z: 4,
+  x: 4,
+  y: 4,
+  z: 11,
 }
 
 const cannonVector = new CANNON.Vec3(0, 1, 0)
@@ -33,10 +33,10 @@ class VelocityModel {
         this.a = ACCELERATION
       }
       if (keyPress === 'd') {
-        this.theta += Math.PI / 256
+        this.theta -= Math.PI / 256
       }
       if (keyPress === 'a') {
-        this.theta -= Math.PI / 256
+        this.theta += Math.PI / 256
       }
     })
 
@@ -71,16 +71,14 @@ class Boat {
 
   constructor(scene, world, groundMat, posX, posY, posZ, camera) {
     const loader = new GLTFLoader()
-    loader.load(
-      'https://raw.githubusercontent.com/SwarzChen/yens-portfolio/master/models/tiny_boat/scene.gltf',
-      (gltf) => {
-        this.mesh = gltf.scene
-        this.mesh.scale.set(0.1, 0.1, 0.1)
-        scene.add(this.mesh)
-      },
-    )
+    loader.load('../models/boat/scene.gltf', (gltf) => {
+      this.mesh = gltf.scene
+      this.mesh.rotation.x = Math.PI / 2
+      this.mesh.scale.set(1, 1, 1)
+      scene.add(this.mesh)
+    })
 
-    this.camera = camera
+    //this.camera = camera
 
     let boxShape = new CANNON.Box(new CANNON.Vec3(size.x, size.y, size.z))
     let boxMat = new CANNON.Material()
@@ -100,46 +98,46 @@ class Boat {
     })
     world.addContactMaterial(boxGroundContact)
 
-    // let boxG = new THREE.BoxGeometry(
-    //   2 * size.x,
-    //   2 * size.y,
-    //   2 * size.z,
-    //   2,
-    //   1,
-    //   2,
-    // )
-    // let boxM = new THREE.MeshStandardMaterial({
-    //   color: 0x33aaaa,
-    //   wireframe: true,
-    // })
+    let boxG = new THREE.BoxGeometry(
+      2 * size.x,
+      2 * size.y,
+      2 * size.z,
+      2,
+      1,
+      2,
+    )
+    let boxM = new THREE.MeshStandardMaterial({
+      color: 0x33aaaa,
+      wireframe: true,
+    })
 
-    // this.testMesh = new THREE.Mesh(boxG, boxM)
-    // this.testMesh.position.set(posX, posY, posZ)
-    // scene.add(this.testMesh)
+    this.testMesh = new THREE.Mesh(boxG, boxM)
+    this.testMesh.position.set(posX, posY, posZ)
+    scene.add(this.testMesh)
   }
 
   update() {
     this.front.accelerate()
     this.back.accelerate()
 
-    this.boxBody.position.x -= this.front.v * Math.cos(this.front.theta)
-    this.boxBody.position.z -= this.front.v * Math.sin(this.front.theta)
-    this.boxBody.position.x += this.back.v * Math.cos(this.front.theta)
-    this.boxBody.position.z += this.back.v * Math.sin(this.front.theta)
+    this.boxBody.position.x += this.front.v * Math.sin(this.front.theta)
+    this.boxBody.position.z += this.front.v * Math.cos(this.front.theta)
+    this.boxBody.position.x -= this.back.v * Math.sin(this.front.theta)
+    this.boxBody.position.z -= this.back.v * Math.cos(this.front.theta)
 
-    this.mesh.rotation.y = -this.front.theta
+    this.mesh.rotation.y = this.front.theta
     this.boxBody.quaternion.setFromAxisAngle(cannonVector, this.mesh.rotation.y)
 
     this.mesh.position.copy(this.boxBody.position)
     this.mesh.quaternion.copy(this.boxBody.quaternion)
-    // this.testMesh.position.copy(this.boxBody.position)
-    // this.testMesh.quaternion.copy(this.boxBody.quaternion)
+    this.testMesh.position.copy(this.boxBody.position)
+    this.testMesh.quaternion.copy(this.boxBody.quaternion)
 
-    this.camera.position.x =
-      this.boxBody.position.x + this.cameraDis * Math.cos(-this.front.theta)
-    this.camera.position.y = this.boxBody.position.y + 15
-    this.camera.position.z =
-      this.boxBody.position.z - this.cameraDis * Math.sin(-this.front.theta)
+    // this.camera.position.x =
+    //   this.boxBody.position.x + this.cameraDis * Math.cos(-this.front.theta)
+    // this.camera.position.y = this.boxBody.position.y + 15
+    // this.camera.position.z =
+    //   this.boxBody.position.z - this.cameraDis * Math.sin(-this.front.theta)
 
     this.lookAtPosition.x = this.mesh.position.x
     this.lookAtPosition.y = this.mesh.position.y + 10
