@@ -32,8 +32,18 @@
       <div id="skill"></div>
       <div id="hint"></div>
     </div>
+
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+
     <script type="module" src="/animation/skill_animation.js"></script>
     <canvas id="bg"></canvas>
     <script type="module" src="/main.js"></script>
+    <script>
+      $(window).on('load', function () {
+        $('.loader-wrapper').fadeOut('slow')
+      })
+    </script>
   </body>
 </html>

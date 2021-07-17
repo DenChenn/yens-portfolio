@@ -13,5 +13,3 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 RUN cd /usr/share/nginx/html
 RUN mkdir page
 COPY --from=builder /app/page/ /usr/share/nginx/html/page
-RUN cd /usr/share/nginx/html/page
-RUN ls -la /usr/share/nginx/html/page/*
