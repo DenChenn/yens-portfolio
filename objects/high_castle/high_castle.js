@@ -5,7 +5,7 @@ import CANNON from 'cannon'
 const size = {
   x: 110,
   y: 5,
-  z: 80,
+  z: 75,
 }
 
 class HighCastle {

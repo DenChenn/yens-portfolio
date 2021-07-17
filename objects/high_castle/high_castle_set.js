@@ -6,6 +6,8 @@ class HighCastleSet {
     this.setOfHighCastle.push(
       new HighCastle(scene, world, groundMat, 1750, 10, 350),
       new HighCastle(scene, world, groundMat, 1750, 10, -100),
+      new HighCastle(scene, world, groundMat, 3050, 10, 350),
+      new HighCastle(scene, world, groundMat, 3050, 10, -100),
     )
   }
   updateAll() {
