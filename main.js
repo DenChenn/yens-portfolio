@@ -134,6 +134,10 @@ function animate() {
   redGateSet.updateAll()
   bambooSet.updateAll()
 
+  let dokanToggle = CheckPosition(boat, dokanSet.setOfDokan[0])
+  HintAnimate(dokanToggle)
+  SkillAnimate(dokanToggle, dokanToggle)
+
   renderer.render(scene, camera)
   stats.end()
   requestAnimationFrame(animate)

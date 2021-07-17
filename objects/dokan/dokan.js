@@ -61,6 +61,10 @@ class Dokan {
     // this.testMesh.position.copy(this.boxBody.position)
     // this.testMesh.quaternion.copy(this.boxBody.quaternion)
   }
+
+  getPosition() {
+    return this.boxBody.position
+  }
 }
 
 export default Dokan
