@@ -12,6 +12,6 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
 RUN cd /usr/share/nginx/html
 RUN mkdir page
-COPY --from=builder /app/page/* /usr/share/nginx/html/page
+COPY --from=builder /app/page/ /usr/share/nginx/html/page
 RUN cd /usr/share/nginx/html/page
 RUN ls
