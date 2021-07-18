@@ -11,6 +11,6 @@
 ### Next Version improvemant:
 * 🔨 Model Phisic
 * 🔨 Render improvement
-* 🔨 Loading page
-* 🔨 Imformation page 
-* 🔨 Auto Leading mode
+* 🔨 Loading page upgrade
+* 🔨 Imformation page finish
+* 🔨 Camera intro animation
