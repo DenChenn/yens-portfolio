@@ -9,7 +9,6 @@
 * **D** ➡️ moving right 
 
 ### Next Version improvemant:
-* 🔨 Model Phisic
 * 🔨 Render improvement
 * 🔨 Loading page upgrade
 * 🔨 Imformation page finish
