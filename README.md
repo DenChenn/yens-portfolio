@@ -2,7 +2,6 @@
 
 ![alt text](https://github.com/SwarzChen/yens-portfolio/blob/master/portfolio.png)
 
-
 ### Control:
 * **W** ⬆️ moving forward
 * **A** ⬅️ moving left
